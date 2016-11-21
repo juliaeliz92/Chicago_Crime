@@ -65,12 +65,7 @@ function checkFirstCondition(lines)
 		data.year=Number(index);
 		JCrime=JSON.stringify(data)
 		outputFirst[ind]=JCrime;
-		fs.writeFile("Theft.JSON",outputFirst,(err)=>{
-				if(err)
-				{
-					throw err;
-				}
-			});
+		
 	}	
 }
 function checkSecondCondition(lines)
@@ -95,12 +90,7 @@ function checkSecondCondition(lines)
 		data.year=Number(index);
 		JCrime=JSON.stringify(data)
 		outputSec[ind]=JCrime;
-		fs.writeFile("Assault.JSON",outputSec,(err)=>{
-				if(err)
-				{
-					throw err;
-				}
-			});
+		
 	}	
 }
 rl.on('line', (line) => {
@@ -120,4 +110,18 @@ rl.on('line', (line) => {
 	}
 	
 });
-
+rl.on('close',function(){
+	
+fs.writeFile("Assault.JSON",outputSec,(err)=>{
+				if(err)
+				{
+					throw err;
+				}
+			});
+fs.writeFile("Theft.JSON",outputFirst,(err)=>{
+				if(err)
+				{
+					throw err;
+				}
+			});
+			});
